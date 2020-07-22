@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: podinfo
-  namespace: demo
+  name: helloworld
+  namespace: manufacturing
   labels:
-    app: podinfo
+    app: helloworld
   annotations:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.init: regex:^3.10.*
@@ -17,14 +17,14 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: podinfo
+      app: helloworld
   template:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9797"
       labels:
-        app: podinfo
+        app: helloworld
     spec:
       initContainers:
       - name: init
@@ -34,7 +34,7 @@ spec:
         - "1"
       containers:
       - name: podinfod
-        image: drfeu/podinfo:dev-bhezqlt6
+        image: drfeu/helloworld:latest
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
