@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world  
+  name: hello-world-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: 
+      labels:
+        app: hello-world
+        version: 1.1.1
+    spec:
+      containers:
+      - env:
+        - name: VAULT_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: vault_token
+              name: hello-world-configmap
+        - name: VAULT_URL
+          valueFrom:
+            configMapKeyRef:
+              key: vault_url
+              name: hello-world-configmap
+        - name: DEPLOY_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              key: deploy_environment
+              name: hello-world-configmap
+        - name: DEPLOY_CUSTOMER_ID
+          valueFrom:
+            configMapKeyRef:
+              key: deploy_customer_id
+              name: hello-world-configmap
+        image: 246488978151.dkr.ecr.us-west-2.amazonaws.com/mx-deploy
+        command: ["java"]
+        args: ["-jar", "helloworld.jar"]
+        imagePullPolicy: Always
+        name: hello-world-web
+        ports:
+        - containerPort: 8091
+          protocol: TCP
+      terminationGracePeriodSeconds: 30
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+
