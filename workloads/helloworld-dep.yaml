@@ -48,7 +48,7 @@ spec:
         command: ["java"]
         args: ["-jar", "helloworld.jar"]
         imagePullPolicy: Always
-        name: hello-world
+        name: hello-world-web
         ports:
         - containerPort: 8091
           protocol: TCP
