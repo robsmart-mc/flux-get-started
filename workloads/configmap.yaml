@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-world-configmap
+data:
+  # property-like keys; each key maps to a simple value
+  vault_token: 8aeVYAJehGAdSXRshIvemJF5
+  vault_url: http://vault.mastercontrollabs.com:8200
+  deploy_environment: dev
+  deploy_customer_id: robcustomer1
