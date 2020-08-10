@@ -4,7 +4,7 @@ metadata:
   labels:
     app: hello-world
   name: hello-world-service
-  namespace: default
+  namespace: helloworld
   resourceVersion: "2024053"
 spec:
   ports:
