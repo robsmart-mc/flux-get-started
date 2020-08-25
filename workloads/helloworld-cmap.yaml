@@ -4,7 +4,7 @@ metadata:
   name: hello-world-configmap
 data:
   # property-like keys; each key maps to a simple value
-  vault_token: 8aeVYAJehGAdSXRshIvemJF5
-  vault_url: http://vault.mastercontrollabs.com:8200
+  vault_token: s.pq4PoMpDMvp0Nq3QeE9T9aOI
+  vault_url: https://vault-dev.legacy.mcresearchlabs.net/
   deploy_environment: dev
   deploy_customer_id: robcustomer1
